@@ -99,6 +99,18 @@ int main(int argc, char *argv)
 		cout << ex.what() << endl;
 	}
 
+	//迭代器遍历方法
+	PrintMs( );
+	auto it = mat.begin<Vec3b>();
+	auto it_end = mat.end<Vec3b>();
+	for (; it != it_end; it++)
+	{
+		(*it).val[0] = 0;
+		(*it).val[1] = 222;
+		(*it).val[2] = 0;
+	}
+
+	PrintMs("mat.begin ms");
 	namedWindow(" mat");  //创建一个窗口，
 	imshow("mat", mat);   // 显示这个窗口
 	waitKey(0);
