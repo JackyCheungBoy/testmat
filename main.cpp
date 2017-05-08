@@ -70,6 +70,22 @@ int main(int argc, char *argv)
 	}
 	PrintMs("mat.ptr ms");
 
+	// 通过mat.at 接口遍历mat
+	for (int row = 0; row < mat.rows; row++)
+	{
+		for (int col = 0; col < mat.cols; col++)
+		{
+			Vec3b &m = mat.at<Vec3b>(row, col);
+			m[0] = 100;
+			m[1] = 100;
+			m[2] = 100;
+
+
+		}
+	}
+	PrintMs("mat.at ms");
+
+
 	namedWindow(" mat");  //创建一个窗口，
 	imshow("mat", mat);   // 显示这个窗口
 	waitKey(0);
