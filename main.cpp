@@ -1,6 +1,10 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
+
+#include <iostream>
+
+using namespace std;
 using namespace cv;
 /*********************  
 计时函数 PrintMs 
@@ -70,21 +74,30 @@ int main(int argc, char *argv)
 	}
 	PrintMs("mat.ptr ms");
 
-	// 通过mat.at 接口遍历mat
-	for (int row = 0; row < mat.rows; row++)
+
+
+	try
 	{
-		for (int col = 0; col < mat.cols; col++)
+		// 通过mat.at 接口遍历mat
+		for (int row = 0; row < mat.rows; row++)
 		{
-			Vec3b &m = mat.at<Vec3b>(row, col);
-			m[0] = 100;
-			m[1] = 100;
-			m[2] = 100;
+			for (int col = 0; col < mat.cols; col++)
+			{
+				Vec3b &m = mat.at<Vec3b>(row, col);
+				m[0] = 100;
+				m[1] = 100;
+				m[2] = 100;
 
 
+			}
 		}
-	}
-	PrintMs("mat.at ms");
+		PrintMs("mat.at ms");
 
+	}
+	catch (Exception &ex)
+	{
+		cout << ex.what() << endl;
+	}
 
 	namedWindow(" mat");  //创建一个窗口，
 	imshow("mat", mat);   // 显示这个窗口
